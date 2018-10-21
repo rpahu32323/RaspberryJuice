@@ -4,8 +4,6 @@ import java.net.*;
 import java.util.*;
 
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,8 +24,6 @@ public class RaspberryJuicePlugin extends JavaPlugin implements Listener {
 	public ServerListenerThread serverThread;
 
 	public List<RemoteSession> sessions;
-
-	public Player hostPlayer = null;
 
 	private LocationType locationType;
 
@@ -127,42 +123,6 @@ public class RaspberryJuicePlugin extends JavaPlugin implements Listener {
 		synchronized(sessions) {
 			sessions.add(newSession);
 		}
-	}
-
-	public Player getNamedPlayer(String name) {
-		if (name == null) return null;
-		for(Player player : Bukkit.getOnlinePlayers()) {
-			if (name.equals(player.getPlayerListName())) {
-				return player;
-			}
-		}
-		return null;
-	}
-
-	public Player getHostPlayer() {
-		if (hostPlayer != null) return hostPlayer;
-		for(Player player : Bukkit.getOnlinePlayers()) {
-			return player;
-		}
-		return null;
-	}
-
-	//get entity by id - DONE to be compatible with the pi it should be changed to return an entity not a player...
-	public Entity getEntity(int id) {
-		for (Player p: getServer().getOnlinePlayers()) {
-			if (p.getEntityId() == id) {
-				return p;
-			}
-		}
-		//check all entities in host player's world
-		Player player = getHostPlayer();
-		World w = player.getWorld();
-		for (Entity e : w.getEntities()) {
-			if (e.getEntityId() == id) {
-				return e;
-			}
-		}
-		return null;
 	}
 
 	public boolean checkBanned(RemoteSession session) {

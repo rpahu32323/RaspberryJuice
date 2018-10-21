@@ -36,6 +36,7 @@ atlassian-ide-plugin.xml
 
 ### Eclipse template
 .project
+.pydevproject
 .classpath
 .metadata
 bin/
