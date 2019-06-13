@@ -159,7 +159,7 @@ public class RemoteSession {
 			
 			// check the world name
 			String worldName = world.getName();
-			if (!worldName.equals("PythonFlats"))
+			if (!worldName.equals("pythonflats"))
 			{
 				send("Fail: Python not allowed in the '" + worldName + "' world");
 				return;
